@@ -1,0 +1,25 @@
+* {
+    margin: 0.5rem;
+}
+.input-wrapper{
+    display: flex;
+}
+
+.input-paragraph {
+    font-size: 25px;
+}
+
+.input {
+    margin-left: 15px;
+    margin-top: 11px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.answer-list {
+    display: flex;
+    list-style: none;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
