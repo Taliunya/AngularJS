@@ -17,7 +17,7 @@
             <ul>
                 <li class="answer-list" ng-repeat="x in b">
                     {{a ? a : 0}} * {{x}} =
-                    {{ a * x }}
+                    {{ (a*x).toFixed(2) }}
                 </li>
             </ul>
         </div>
