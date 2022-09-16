@@ -1,0 +1,33 @@
+* {
+    margin: 0.5rem;
+}
+.input-wrapper{
+    display: flex;
+}
+
+.input-paragraph {
+    font-size: 25px;
+}
+
+.input {
+    margin-left: 15px;
+    margin-top: 11px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.answer {
+    font-size: 20px;
+}
+
+.get-result-btn {
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.get-result-btn:hover {
+    cursor: pointer;
+    background: gray;
+}
+
