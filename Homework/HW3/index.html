@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taya Lab</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <div ng-app="myApp" ng-controller="myController">
+            <form novalidate>
+                <div class="row">
+                    <p class="input-paragraph">First name:</p>
+                    <input class="input" type="text" ng-model="user.firstName">
+                </div>
+                <div class="row">
+                    <p class="input-paragraph">Last name:</p>
+                    <input class="input" type="text" ng-model="user.lastName">
+                </div>
+                <div class="row">
+                    <p class="input-paragraph">Birthday:</p>
+                    <input class="input" type="date" ng-model="user.birth">
+                </div>
+                <div class="row">
+                <p class="input-paragraph">Gender:</p>
+                <select class="select-wrapper"  ng-model="user.gender">
+                    <option ng-repeat="x in gender">
+                        {{x}}
+                    </option>
+                </select>
+                </div>
+                <div class="row">
+                <p class="input-paragraph">Education:</p>
+                <select class="select-wrapper" ng-model="user.education">
+                    <option ng-repeat="x in education">
+                        {{x}}
+                    </option>
+                </select>
+                </div>
+                <div class="row" ng-if="user.education.trim() == 'Master'">
+                    <p class="input-paragraph"> Salary:</p>
+                    <input class="input" type="text" ng-model="user.salary"><br>
+                </div>
+            </form>
+        <div>
+            <h2>Whom we have created:</h2>
+            <div class="row">
+                <h3> First name:</h3>
+                <p class="user-info-paragraph">{{user.firstName}}</p>
+            </div>
+            <div class="row">
+                <h3>Last name:</h3>
+                <p class="user-info-paragraph">{{user.lastName}}</p>
+            </div>
+            <div class="row">
+                <h3>Birthday:</h3>
+                <p class="user-info-paragraph">{{user.birth | date}}</p>
+            </div>
+            <div class="row">
+                <h3>Gender:</h3>
+                <p class="user-info-paragraph">{{user.gender}}</p>
+            </div>
+            <div class="row">
+                <h3>Education:</h3>
+                <p class="user-info-paragraph">{{user.education}}</p>
+            </div>
+            <div class="row" ng-if="user.education.trim() == 'Master'">
+                <h3>Salary:</h3>
+                <p class="user-info-paragraph">{{user.salary}}</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myController', function ($scope) {
+        $scope.education = ['School','College' ,'University', 'Master'];
+        $scope.gender = ['Male', 'Female'];
+        $scope.user = {
+            firstName: 'Taisia',
+            lastName: 'Shoshova',
+            birth: new Date(2001, 9, 9),
+            gender: 'Unselected',
+            education: 'Unselected',
+            salary: 3000
+        }
+        $scope.click = function () {
+            console.log($scope.user.education.trim());
+        }
+
+    });
+</script>
+</body>
+</html>

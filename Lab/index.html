@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taya Lab</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <div ng-app="myApp" >
+        <div ng-controller="helloWorld">
+            <div class="city-country-wrapper">
+                <div class="row">
+                    <button class="button" ng-click="switchDisabled()">Change</button>
+                    <input class="input" ng-disabled="inputDisabled"
+                           ng-model="inputValue" placeholder="Hello World!">
+                </div>
+            </div>
+        </div>
+        <div ng-controller="cityCountry">
+        <div class="city-country-wrapper">
+            <div class="row">
+                <h2 class="city-header">The city is: </h2>
+                <p class="selected-city">{{selectedCity.city}}</p>
+            </div>
+            <div class="row">
+                <h2 class="city-header">The country is: </h2>
+                <p class="selected-city">{{selectedCity.country}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <p class="select-label">Select a City:</p>
+            <select class="select" ng-model="selectedCity" ng-options="y.city for (x, y) in countryCity">
+            </select>
+        </div>
+        </div>
+        <hr>
+        <div ng-controller="table">
+            <div class="row">
+            <div class="row">
+                <p class="select-label">Limit:</p>
+                <select class="select" ng-model="selectedLimit" ng-options="y for (x, y) in limit"></select>
+            </div>
+            <div class="row">
+               <p class="select-label">Filter by category:</p>
+                <select class="select" ng-model="selectedFilter" ng-options="y for (x, y) in filter"></select>
+            </div>
+            <div class="row">
+                <p class="select-label">Filter by price range: </p>
+                <select class="select" ng-model="selectedPriceRange" ng-options="y for (x,y) in priceRange"></select>
+            </div>
+            </div>
+            <div class="row">
+                <p class="select-label">Items in cart: </p>
+                <div class="select-label-wrapper">
+                <p class="select-label limit">{{selectedLimit}}</p>
+                </div>
+            </div>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th ng-repeat="column in displayedColumns">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr ng-repeat="product in products |filter:filterByPrice(selectedPriceRange)
+                |filter:filterByCategory(selectedFilter)
+                | orderBy: 'count'">
+                    <td ng-if="$index + 1 <= selectedLimit">{{product.name}}</td>
+                    <td ng-if="$index + 1 <= selectedLimit">{{product.price | currency}}</td>
+                    <td ng-if="$index + 1 <= selectedLimit">{{product.category}}</td>
+                    <td ng-if="$index + 1 <= selectedLimit">{{product.count}}</td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    </div>
+<script src="app.js"></script>
+<script src="controllers/helloWorldController.js"></script>
+<script src="controllers/cityCountryController.js"></script>
+<script src="controllers/tableController.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+* {
+    margin: 0.5rem;
+}
+.input-wrapper{
+    display: flex;
+}
+
+.input-paragraph {
+    font-size: 25px;
+}
+
+.input {
+    margin-left: 15px;
+    margin-top: 11px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.user-info-paragraph {
+    margin-top: 1vh;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.select-wrapper {
+    margin-top: 2vh;
+}
+
