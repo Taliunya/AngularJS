@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taya Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="formController">
+        <form name="myForm">
+            <div>
+                <h1>Список футболистов</h1>
+                <hr>
+                <div>
+                <h3>Имя игрока </h3>
+                    <div>
+                <input type="text"
+                   name="playerName"
+                   placeholder="Введите имя игрока"
+                    ng-model="player.name"
+                       ng-disabled="player.age > 35"
+                       required>
+                        <span ng-show="myForm.playerName.$touched && myForm.playerName.$invalid && player.age <= 35">
+                            Введите имя игрока
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>В какой команде играет</h3>
+                <select name="team" class="select" ng-model="player.team" required ng-disabled="player.age > 35">
+                    <option ng-repeat="team in teams">{{team}}</option>
+                </select>
+                <span ng-show="myForm.team.$invalid && player.age <= 35">
+                            Выберите команду
+                </span>
+            </div>
+            <div>
+                <h3>Гражданство</h3>
+                <select name="citizenship" class="select" ng-model="player.citizenship" required ng-disabled="player.age > 35">
+                <option ng-repeat="citizenship in citizenships">{{citizenship}}</option>
+                </select>
+                <span ng-show="myForm.citizenship.$invalid && player.age <= 35">
+                            Выберите гражданство
+                </span>
+            </div>
+            <div>
+                <h3>Пол</h3>
+                <label><input type="radio" ng-model="player.gender" value="male" ng-disabled="player.age > 35" />Male</label>
+                <label><input type="radio" ng-model="player.gender" value="female" ng-disabled="player.age > 35" />Female</label>
+                <span ng-show="!player.gender && player.age <= 35">
+                            Выберите пол
+                </span>
+            </div>
+            <div>
+                <h3>Семейное положение</h3>
+                <div style="display: flex">
+                    <md-switch class="md-primary" md-no-ink aria-label="Married" ng-model="player.married" ng-disabled="player.age > 35">
+                    </md-switch>
+                    <p style="margin-top: 29px">Женат</p>
+                </div>
+            </div>
+            <div>
+                <h3>Возраст</h3>
+                <input type="text"
+                       name="age"
+                       placeholder="Введите возраст"
+                       ng-model="player.age"
+                        required>
+                <span ng-show="!player.age && player.age <= 35">
+                            Напишите возраст
+                </span>
+            </div>
+            <div>
+                <h3>Зарплата</h3>
+                <input type="text"
+                       name="salary"
+                       placeholder="Введите желаему зарплату"
+                       ng-model="player.salary"
+                       ng-disabled="player.age > 35"
+                        required>
+                <span ng-show="!player.salary && player.age <= 35">
+                            Напишите зарплату
+                </span>
+            </div>
+            <div>
+                <h3>Сколько голов забил</h3>
+                <input type="text"
+                       name="goals"
+                       placeholder="Введите сколько голов забили"
+                       ng-model="player.goals"
+                       ng-disabled="player.age > 35"
+                        required>
+                <span ng-show="!player.goals && player.age <= 35">
+                            Напишите количество забитых голов
+                </span>
+            </div>
+            <button ng-click="click()" ng-disabled="myForm.$invalid ||player.age > 35 || (!!player.salary && player.salary < 1000) || player.salary > 10000">Добавить</button>
+        </form>
+        <h1 ng-show="player.age > 35 || (!!player.salary && player.salary < 1000) || player.salary > 10000">
+            Приносим свои извинения, но набор закрыт!
+        </h1>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th ng-repeat="column in displayedColumns">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr ng-repeat="player in alreadyInTeam">
+                    <td>{{player.name}}</td>
+                    <td>{{player.team}}</td>
+                    <td>{{player.citizenship}}</td>
+                    <td>{{player.goals}}</td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <div>&nbsp;</div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="controllers/formController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.js"></script>
+</body>
+</html>

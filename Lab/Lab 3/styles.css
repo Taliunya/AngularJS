@@ -1,0 +1,74 @@
+* {
+    margin: 0.5rem;
+}
+
+table {
+    width: 100%;
+}
+
+table, th , td  {
+    text-align: center;
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table-wrapper {
+    width: 45vw;
+    margin-bottom: 5vh;
+}
+
+.input {
+    font-size: 15px;
+}
+
+.button {
+    font-size: 15px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+.city-country-wrapper {
+    margin-top: 2vh;
+    background: cornflowerblue;
+    width: 35vw;
+}
+
+.row {
+    display: flex;
+}
+
+.city-header {
+    color: white;
+}
+
+.selected-city {
+    color: white;
+    margin-top: 11px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.select-label {
+    font-size: 20px;
+}
+
+.select-label-wrapper {
+    margin: 0;
+    padding: 0;
+    background-color: cadetblue;
+}
+
+.limit {
+    color: white;
+}
+.select {
+    font-size: 30px;
+}
