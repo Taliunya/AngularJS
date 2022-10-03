@@ -3,7 +3,7 @@ app.controller('table', function ($scope) {
     $scope.limit = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     $scope.selectedFilter = 'any';
     $scope.filter = ['any', 'milk', 'meat', 'fish'];
-    $scope.priceRange = ['any', '<10', '<50', '<100'];
+    $scope.priceRange = ['any', '>10', '>50', '>100'];
     $scope.selectedPriceRange = 'any';
     $scope.filterByCategory = function (selected) {
         return function (item) {
