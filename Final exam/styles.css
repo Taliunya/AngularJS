@@ -1,0 +1,6 @@
+* {
+    margin: 0.5rem;
+}
+.row {
+    display: flex;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taya Final exam</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="testFormController">
+    <form name="testForm">
+        <div class="row">
+            <p>Введите имя</p>
+            <input placeholder="Введите имя"
+                   ng-model="user.name"
+                   name="userName"
+                   type="text"
+                    required>
+            <span ng-show="testForm.userName.$touched && testForm.userName.$invalid">
+                            Введите имя ребенка
+            </span>
+        </div>
+        <div class="row">
+            <p>Введите фамилию</p>
+            <input placeholder="Введите фамилию"
+                   ng-model="user.surname"
+                   name="userSurname"
+                   type="text"
+                   required>
+            <span ng-show="testForm.userSurname.$touched && testForm.userSurname.$invalid">
+                            Введите фамилию ребенка
+            </span>
+        </div>
+        <div class="row">
+            <p>Введите дату рождения</p>
+            <input placeholder="Введите дату рождения"
+                   ng-model="user.birth"
+                   name="birth"
+                   type="date"
+                   required>
+            <button ng-click="findAge()">Проверить доступность группы</button>
+        </div>
+        <button ng-disabled="!user.isGood" ng-click="addChild()">Добавить ребенка</button>
+    </form>
+        <div ng-if="user.isGood && user.isAdded">
+            <div class="row">
+                <h3>Имя и фамилия</h3>
+                <p>{{user.name + ' ' + user.surname}}</p>
+            </div>
+            <div class="row">
+                <h3>Возраст</h3>
+                <p>{{user.age}}</p>
+            </div>
+            <div class="row">
+                <h3>Номер группы</h3>
+                <p>{{user.groupNumber}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script src="services/ageService.js"></script>
+<script src="controllers/formController.js"></script>
+</body>
+</html>
