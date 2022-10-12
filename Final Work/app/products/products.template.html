@@ -1,0 +1,151 @@
+<div ng-app="products">
+    <div style="border: 1px solid black">
+        <form class="product-form" name="productForm">
+            <div class="row">
+            <p>Введите имя продукта</p>
+            <input placeholder="Введите имя продукта"
+                   ng-model="$ctrl.newProduct.name"
+                    name="productName"
+                    required>
+
+            <span ng-show="productForm.productName.$touched && productForm.productName.$invalid">
+                Введите обязательное поле
+            </span>
+
+            <span ng-if="$ctrl.newProduct.name.length <= 3 && $ctrl.newProduct.name">
+                Имя продукта слишком короткое, добавьте больше 3-х символов
+            </span>
+
+            <span ng-if="$ctrl.newProduct.name.length > 50">
+                Имя продукта слишком длинное, оно содержит больше 50 символов
+            </span>
+            </div>
+            <div class="row">
+            <p>Выберите категорию</p>
+            <select class="select"
+                    ng-model="$ctrl.newProduct.category"
+                    ng-options="y for (x, y) in $ctrl.possibleCategories"
+                    required
+                    name="category"></select>
+
+            <span ng-show="productForm.category.$invalid">
+                Введите обязательное поле
+            </span>
+            </div>
+            <div class="row">
+            <p>Выберите цену</p>
+            <input placeholder="Выберите цену"
+                   type="number"
+                   ng-model="$ctrl.newProduct.price"
+                    required
+                    name="price">
+
+            <span ng-show="productForm.price.$touched && productForm.price.$invalid">
+                Введите обязательное поле
+            </span>
+
+            <span ng-show="$ctrl.newProduct.price < 0 && $ctrl.newProduct.price">
+                Отрицательную цену нельзя вводить!
+            </span>
+
+            <span ng-show="$ctrl.newProduct.price == 0">
+                Введите цену выше нуля!
+            </span>
+
+            <span ng-show="$ctrl.newProduct.price > 100000">
+                Слишком высокая цена!
+            </span>
+            </div>
+            <div class="row">
+            <p>Выберите количество</p>
+            <input placeholder="Выберите количество"
+                   type="number"
+                   ng-model="$ctrl.newProduct.count"
+                    required
+                    name="count">
+
+            <span ng-show="productForm.count.$touched && productForm.count.$invalid">
+                Введите обязательное поле
+            </span>
+
+            <span ng-show="$ctrl.newProduct.count < 0 && $ctrl.newProduct.count">
+                Отрицательное количество нельзя вводить!
+            </span>
+
+            <span ng-show="$ctrl.newProduct.count == 0">
+                Добавьте продукты!
+            </span>
+
+            <span ng-show="$ctrl.newProduct.count > 100">
+                Слишком большое количество!
+            </span>
+            </div>
+        </form>
+        <button class="submit-btn" ng-click="$ctrl.addProduct()"
+            ng-disabled="productForm.$invalid ||
+            ($ctrl.newProduct.name.length <= 3 && $ctrl.newProduct.name) ||
+            $ctrl.newProduct.name.length > 50 ||
+            ($ctrl.newProduct.price < 0 && $ctrl.newProduct.price) ||
+            $ctrl.newProduct.price == 0 ||
+            $ctrl.newProduct.price > 100000 ||
+            ($ctrl.newProduct.count < 0 && $ctrl.newProduct.count) ||
+            $ctrl.newProduct.count == 0 ||
+            $ctrl.newProduct.count > 100">
+            Добавить новый продукт
+        </button>
+    </div>
+    <div>
+        <div class="row filters">
+        <div class="row">
+            <p class="select-label">Фильтр по категории:</p>
+            <select class="select" ng-model="$ctrl.selectedFilter" ng-options="y for (x, y) in $ctrl.categoryFilter"></select>
+        </div>
+        <div class="row">
+            <p class="select-label">Поиск по имени:</p>
+            <input type="text"
+                   placeholder="Поиск по имени"
+                   ng-model="searchString.name">
+        </div>
+        </div>
+        <table>
+            <tr>
+                <th ng-repeat="column in $ctrl.displayedColumns track by $index">
+                    {{column}}
+                </th>
+            </tr>
+            <tr ng-repeat="product in $ctrl.products|
+            filter:$ctrl.filterByCategory($ctrl.selectedFilter)|
+            filter:searchString| orderBy: 'price'">
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.count}}</td>
+                <td>
+                    <button ng-disabled="product.isBought" ng-click="$ctrl.deleteProduct(product)">
+                        Удалить
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="$ctrl.buyProduct(product)">
+                        Купить
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="$ctrl.boughtProducts.length > 0">
+                <td style="font-weight: bold">
+                    Итого
+                </td>
+                <td></td>
+                <td style="font-weight: bold">
+                    Цена {{$ctrl.totalPrice}}
+                </td>
+                <td style="font-weight: bold">
+                    количество {{$ctrl.totalCount}}
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+</div>

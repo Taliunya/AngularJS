@@ -1,0 +1,97 @@
+<div>
+    <h1>Contact us</h1>
+    <div style="border: 1px solid black;">
+        <h3>Ваше мнение очень важно для нас</h3>
+        <form name="contactForm">
+            <div class="row">
+                <p>Имя</p>
+                <input ng-model="$ctrl.contact.name"
+                       type="text"
+                       placeholder="Введите имя"
+                       required
+                        name="name">
+                <span ng-show="contactForm.name.$touched && contactForm.name.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <div class="row">
+                <p>Фамилия</p>
+                <input ng-model="$ctrl.contact.surname"
+                       type="text"
+                       placeholder="Введите фамилию"
+                       required
+                       name="surname">
+                <span ng-show="contactForm.surname.$touched && contactForm.surname.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <div class="row">
+                <p>Пол</p>
+                <label><input type="radio" ng-model="$ctrl.contact.gender" value="male" />Мужчина</label>
+                <label><input type="radio" ng-model="$ctrl.contact.gender" value="female"/>Женщина</label>
+            </div>
+            <div class="row">
+                <p>Дата рождения</p>
+                <input ng-model="$ctrl.contact.date"
+                       type="date"
+                       placeholder="Введите дату рождения"
+                       required
+                       name="date">
+                <span ng-show="contactForm.date.$touched && contactForm.date.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <div class="row">
+                <p>Страна</p>
+                <input ng-model="$ctrl.contact.country"
+                       type="text"
+                       placeholder="Введите страну"
+                       required
+                       name="country">
+                <span ng-show="contactForm.country.$touched && contactForm.country.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <div class="row">
+                <p>Адрес</p>
+                <input ng-model="$ctrl.contact.address"
+                       type="text"
+                       placeholder="Введите адрес"
+                       required
+                       name="address">
+                <span ng-show="contactForm.address.$touched && contactForm.address.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <div class="row">
+                <p>Электронная почта</p>
+                <input ng-model="$ctrl.contact.email"
+                       type="email"
+                       placeholder="Введите email"
+                       required
+                       name="email">
+                <span ng-show="contactForm.email.$touched && contactForm.email.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+        </form>
+        <button class="contact-btn" ng-disabled="contactForm.$invalid" ng-click="$ctrl.submit()">Submit</button>
+        <button class="contact-btn"  ng-click="$ctrl.reset()">Reset</button>
+    </div>
+    <hr>
+    <div>
+        <h3>Координаты компании</h3>
+        <div class="row">
+            <p><b>Adresa:</b></p>
+            <i>Chisinau, bd.Dacia 12, oficiul 5</i>
+        </div>
+        <div class="row">
+            <p><b>Email:</b></p>
+            <i>repsmoldova@reps.com</i>
+        </div>
+        <div class="row">
+            <p><b>Contacte:</b></p>
+            <i>Tel: (022) 26 76 50</i>
+        </div>
+    </div>
+</div>

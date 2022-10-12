@@ -1,0 +1,51 @@
+<div ng-app="register">
+    <h1 style="text-align: center">Создание нового аккаунта</h1>
+    <form class="auth-form" name="registerForm">
+        <div style="margin-left: 40vw" class="row">
+            <p>Имя пользователя</p>
+            <input name="username" placeholder="username" type="text" ng-model="$ctrl.user.name" required>
+            <span ng-show="authForm.username.$touched && authForm.username.$invalid">
+            Введите имя пользователя
+        </span>
+            <span ng-if="$ctrl.user.name.length <= 5 && $ctrl.user.name">
+            Имя слишком короткое, введите больше 5 символов
+        </span>
+            <span ng-if="$ctrl.user.name.length > 20">
+            Имя слишком короткое введите менее 5 символов
+        </span>
+        </div>
+
+        <div style="margin-left: 40vw"  class="row">
+            <p>Пароль</p>
+            <input name="password" placeholder="password" type="password" ng-model="$ctrl.user.password" required>
+            <span ng-show="authForm.password.$touched && authForm.password.$invalid">
+            Введите пароль
+        </span>
+            <span ng-if="$ctrl.user.password.length <= 5 && $ctrl.user.password">
+            Пароль слишком короткий, введите более 5 символов
+        </span>
+            <span ng-if="$ctrl.user.password.length > 20">
+            Пароль слишком длинный, введите менее 20 символов
+        </span>
+        </div>
+
+        <div style="margin-left: 40vw"  class="row">
+            <p>Повторный пароль</p>
+            <input name="repatedpassword" placeholder="password" type="password" ng-model="$ctrl.user.repeatedPassword" required>
+            <span ng-show="authForm.repatedpassword.$touched && authForm.repatedpassword.$invalid">
+            Введите повторный пароль
+        </span>
+            <span ng-if="$ctrl.user.repeatedPassword != $ctrl.user.password">
+            Пароли не совпадают
+        </span>
+        </div>
+        <button class="login-btn"  ng-click="$ctrl.createAcc()" ng-disabled="registerForm.$invalid ||
+($ctrl.user.name.length <= 5 && $ctrl.user.name) ||
+       $ctrl.user.name.length > 20 ||
+    ($ctrl.user.password.length <= 5 && $ctrl.user.password) ||
+    $ctrl.user.password.length > 20 ||
+    ($ctrl.user.password != $ctrl.user.repeatedPassword)">
+            Создать
+        </button>
+    </form>
+</div>

@@ -1,0 +1,41 @@
+<div ng-app="authentication">
+    <h3 style="text-align: center">Аутентификация</h3>
+    <form class="auth-form" name="authForm">
+        <p style="text-align: center" ng-if="$ctrl.isDataIncorrect">
+               Логин или пароль введен неправильно!
+            </p>
+        <div style="margin-left: 40vw" class="row">
+            <p>Username</p>
+            <input name="username" placeholder="username" type="text" ng-model="$ctrl.user.name" required>
+            <span ng-show="authForm.username.$touched && authForm.username.$invalid">
+            Enter username
+        </span>
+            <span ng-if="$ctrl.user.name.length <= 5 && $ctrl.user.name">
+            Username is too short, enter more than 5 symbols
+        </span>
+            <span ng-if="$ctrl.user.name.length > 20">
+            Username is too long, enter less than 20 symbols
+        </span>
+        </div>
+        <div style="margin-left: 40vw"  class="row">
+            <p>Password</p>
+            <input name="password" placeholder="password" type="password" ng-model="$ctrl.user.password" required>
+            <span ng-show="authForm.password.$touched && authForm.password.$invalid">
+            Enter password
+        </span>
+            <span ng-if="$ctrl.user.password.length <= 5 && $ctrl.user.password">
+            Password is too short, enter more than 5 symbols
+        </span>
+            <span ng-if="$ctrl.user.password.length > 20">
+            Password is too long, enter less than 20 symbols
+        </span>
+        </div>
+        <button class="login-btn" ng-click="$ctrl.login()" ng-disabled="authForm.$invalid ||
+     ($ctrl.user.name.length <= 5 && $ctrl.user.name) ||
+       $ctrl.user.name.length > 20 ||
+    ($ctrl.user.password.length <= 5 && $ctrl.user.password) ||
+    $ctrl.user.password.length > 20">
+            Login
+        </button>
+    </form>
+</div>
