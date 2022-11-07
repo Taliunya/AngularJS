@@ -6,7 +6,8 @@ function Contact() {
         date: '',
         country: '',
         address: '',
-        email: ''
+        email: '',
+        flag : false
     };
 
     this.reset = function () {
@@ -17,7 +18,8 @@ function Contact() {
             date: '',
             country: '',
             address: '',
-            email: ''
+            email: '',
+            flag : false
         };
     }
 

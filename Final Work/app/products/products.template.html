@@ -1,5 +1,10 @@
 <div ng-app="products">
-    <div style="border: 1px solid black">
+    <div>
+        <input ng-focus="count = count + 1" ng-init="count=0" >
+        <h1>{{count}}</h1>
+        <div ng-non-bindable>Ignored:{{count}}</div>
+    </div>
+        <div style="border: 1px solid black">
         <form class="product-form" name="productForm">
             <div class="row">
             <p>Введите имя продукта</p>

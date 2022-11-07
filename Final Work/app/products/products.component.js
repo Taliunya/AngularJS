@@ -19,6 +19,7 @@ function ProductsList () {
         count: null,
         isBought: false
     };
+
     this.boughtProducts = [];
     this.totalPrice = 0;
     this.totalCount = 0;

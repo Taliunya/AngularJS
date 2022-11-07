@@ -9,7 +9,6 @@ function Header($mdDialog) {
             .cancel('Нет, я продолжу покупки');
 
         $mdDialog.show(confirm).then(function () {
-            //Да
             window.location.href = '#!/auth'
         }, function () {
         });

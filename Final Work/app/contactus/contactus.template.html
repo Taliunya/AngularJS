@@ -1,8 +1,10 @@
 <div>
     <h1>Contact us</h1>
+    <img src="https://stihi.ru/pics/2020/06/18/8266.jpg">
+
     <div style="border: 1px solid black;">
         <h3>Ваше мнение очень важно для нас</h3>
-        <form name="contactForm">
+        <form name="contactForm" ng-submit="$ctrl.submit()">
             <div class="row">
                 <p>Имя</p>
                 <input ng-model="$ctrl.contact.name"
@@ -74,9 +76,20 @@
                 Введите обязательное поле
                 </span>
             </div>
+          <div class="row">
+              <p>  Принимаю соглашение </p>
+                <input type="checkbox" ng-model="$ctrl.contact.flag" required>
+                <div ng-hide="$ctrl.contact.flag">
+                    <p>Нажимая на галочку, даю согласие на обработку моих данных</p>
+                </div>
+                <span ng-show="contactForm.flag.$touched && contactForm.flag.$invalid">
+                Введите обязательное поле
+                </span>
+            </div>
+            <button class="contact-btn" ng-disabled="contactForm.$invalid" type="submit" >Submit</button>
+            <button class="contact-btn"  ng-click="$ctrl.reset()">Reset</button>
         </form>
-        <button class="contact-btn" ng-disabled="contactForm.$invalid" ng-click="$ctrl.submit()">Submit</button>
-        <button class="contact-btn"  ng-click="$ctrl.reset()">Reset</button>
+
     </div>
     <hr>
     <div>
@@ -94,4 +107,5 @@
             <i>Tel: (022) 26 76 50</i>
         </div>
     </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2722.276794320963!2d28.867964214962416!3d46.97589773932641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97940a9ad490f%3A0xcd95dfe8076284ff!2zQnVsZXZhcmR1bCBEYWNpYSA1MCwgQ2hpyJlpbsSDdSAyMDYyLCDQnNC-0LvQtNC-0LLQsA!5e0!3m2!1sru!2s!4v1519761715458" width="600"  height="450" frameborder="1" style="border:0" allowfullscreen></iframe><br><br>
 </div>
